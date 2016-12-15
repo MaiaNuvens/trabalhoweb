@@ -24,6 +24,8 @@ import br.ufc.model.Usuario;
 @Controller
 public class UsuarioController {
 	
+	// comentario teste git
+	
 	@Autowired
 	@Qualifier(value = "usuarioDAOHib")
 	private IUsuarioDAO usuarioDAO;
