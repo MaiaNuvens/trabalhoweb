@@ -37,7 +37,7 @@ public class Usuario {
 	private int idade;
 	
 	//-------------------- Amizade ---------------------
-	@OneToMany(mappedBy="usuarioFonte")
+	@OneToMany(mappedBy="usuarioFonte", fetch = FetchType.EAGER)
 	private Set<Amizade> amizades = new HashSet<Amizade>();
 	
 	//---------------------One to many - Album---------------------------

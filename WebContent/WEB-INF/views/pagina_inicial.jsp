@@ -7,12 +7,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+<h2>Bem vindo ${usuario_logado.nome}</h2><br>
 <a href="mostrarPerfilLogado?id=${usuario_logado.usuId}">Meu Perfil</a><br />
 <a href="listarComunidades">Comunidades</a><br />
-<a href="listarUsuarios">Encontre Amigos</a><br />
-
-
+<!-- <a href="listarUsuarios">Encontre Amigos</a><br /> -->
+<a href="inserirAmizadeFormulario?id=${usuario_logado.usuId}">Encontre Amigos </a><br />
+<a href="cadastrarComunidadeFormulario">Criar Comunidade</a><br />
 <!-- <iframe src="listarUsuarios"> INCEPTION KKKKK-->
 </body>
 </html>

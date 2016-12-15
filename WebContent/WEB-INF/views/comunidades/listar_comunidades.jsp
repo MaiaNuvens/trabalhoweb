@@ -6,8 +6,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style>
+	table {
+	    font-family: arial, sans-serif;
+	    border-collapse: collapse;
+	    width: 50%;
+	}
+	
+	td, th {
+	    border: 1px solid white;
+	    text-align: left;
+	    padding: 5px;
+	}
+	
+	tr:nth-child(even) {
+	    background-color: #dddddd;
+	}
+	tr:nth-child(odd) {
+	    background-color: #dddddd;
+	}
+</style>
 </head>
 <body>
+
 
 <h2>Comunidades:</h2><br>
 <table style="width:50%">

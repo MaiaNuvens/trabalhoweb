@@ -9,6 +9,7 @@
 </head>
 <body>
 
+Insira um nome para a comunidade e escolha uma categoria :)
 <form action="cadastrarComunidade" method="post">
 	Nome: <input type="text" name="nome" /> <br />
 	Categoria: <select name = "cat"> 

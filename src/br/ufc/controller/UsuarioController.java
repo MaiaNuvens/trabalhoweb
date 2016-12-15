@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import br.ufc.dao.IAmizadeDAO;
 import br.ufc.dao.IUsuarioDAO;
-import br.ufc.dao.UsuarioDAOHib;
 import br.ufc.form.AmizadeCheckboxForm;
 import br.ufc.model.Amizade;
 import br.ufc.model.Comunidade;
@@ -46,8 +45,10 @@ public class UsuarioController {
 		Usuario u = usuarioDAO.recuperar(id);
 		if(u.getUsuId() != ((Usuario)session.getAttribute("usuario_logado")).getUsuId()){
 			Set<Comunidade> com = u.getComunidades();
+			Set<Amizade> amigos = u.getAmizades();
 			model.addAttribute("usuario", u);
 			model.addAttribute("comunidades", com);
+			model.addAttribute("amigos", amigos);
 			return "usuarios/perfil";
 		}
 		
@@ -58,14 +59,19 @@ public class UsuarioController {
 	public String mostrarPerfilLogado (HttpSession session ,Model model){
 		
 		Usuario u = (Usuario) session.getAttribute("usuario_logado");
-		Set<Comunidade> com = u.getComunidades();
+		Usuario alterado = usuarioDAO.recuperar(u.getUsuId());
+		
+		Set<Comunidade> com = alterado.getComunidades();
+		Set<Amizade> amigos = alterado.getAmizades();
+		
 		model.addAttribute("comunidades", com);
 		model.addAttribute("usuario", u);
+		model.addAttribute("amigos", amigos);
 		return "usuarios/perfil_logado";
 	}
 	
-	@RequestMapping("/alterarUsuario")  // NO BANCO TA OK MAS QUANDO REDIRECIONO NAO APARECE OS NOVOS DADOS IGUAL AO CRIAR COMUNIDADE
-	public String alterarUsuario(Usuario u, HttpSession session) {  // tem q modificar o alterar? fazer retornar algo?
+	@RequestMapping("/alterarUsuario")  
+	public String alterarUsuario(Usuario u, HttpSession session) {
 		
 		usuarioDAO.alterar(u);
 		Usuario alterado = usuarioDAO.recuperar(u.getUsuId());
@@ -114,7 +120,12 @@ public class UsuarioController {
 			amizadeDAO.inserir(amizade);
 		}
 		
-		return "redirect:listarUsuario";
+		return "redirect:listarUsuarios";
+	}
+	
+	@RequestMapping("/irParaInicio")
+	public String irParaInicio (){
+		return "inicio";
 	}
 
 }

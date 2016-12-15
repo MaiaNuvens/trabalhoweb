@@ -70,6 +70,8 @@ public class ComunidadeController {
 		comunidade.setCategoria(categoria);
 		comunidade.setUsuarios(u);
 		comunidadeDAO.inserir(comunidade);
+		/*Usuario alterado = usuarioDAO.recuperar(usuario.getUsuId());
+		session.setAttribute("usuario_logado", alterado);*/
 		return "redirect:mostrarPerfilComunidade?id="+comunidade.getComId();
 	}
 	

@@ -6,8 +6,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style>
+	table {
+	    font-family: arial, sans-serif;
+	    border-collapse: collapse;
+	    width: 50%;
+	}
+	
+	td, th {
+	    border: 1px solid white;
+	    text-align: left;
+	    padding: 5px;
+	}
+	
+	tr:nth-child(even) {
+	    background-color: #dddddd;
+	}
+	tr:nth-child(odd) {
+	    background-color: #dddddd;
+	}
+</style>
 </head>
 <body>
+
 <c:import url="cabecalho.jsp" /> <br>
 <h2>Comunidade - ${comunidade.nome}</h2> <c:if test="${pertence == false}">
 			                                <a href = "adicionarUsuario?id=${comunidade.comId}"> Entrar </a>
@@ -15,31 +36,35 @@
 
 <br>
 <h2>Participantes:</h2> 
-
+        <table>
 		<c:forEach var="usuario" items="${usuarios}">
-		
-			 <a href = "mostrarPerfil?id=${usuario.usuId}">${usuario.nome}</a>
-	         <br>
+		     <tr>
+			 <td><a href = "mostrarPerfil?id=${usuario.usuId}">${usuario.nome}</a></td>
+	         </tr>
 		</c:forEach>
-
+        </table>
 
 <h2>Foruns:</h2> 
-
+        <table>
 		<c:forEach var="forum" items="${foruns}">
-		
+		    <tr>
 			 <td><a href = "mostrarPerfilForum?id=${forum.forId}">${forum.titulo}</a></td>
-			 <c:if test="${forum.usuId == usuario.usuId}">
-			       <td> <a href = "apagarForum?id=${forum.forId}">APAGAR</a></td>
-			 </c:if>
-	         <br>
+			</tr>   
 		</c:forEach>
-
+       </table>
 <br>
 Criar forum : <br>
 <form action="cadastrarForum?id=${comunidade.comId}" method="post">     <!-- colocar comunidade -->
-
-              Titulo:<input type="text" name="titulo" /> <br />
-              Descricao: <input type="text" name="descricao" /> <br />
+              <table>
+                     <tr>
+                     <td>Titulo:</td>
+                     <td><input type="text" name="titulo" /></td>
+                     </tr>
+                     <tr>
+                     <td>Descricao:</td>
+                     <td><input type="text" name="descricao" /></td>
+                    </tr>
+              </table>
               <input type="submit" value="OK">
 </form>
 
